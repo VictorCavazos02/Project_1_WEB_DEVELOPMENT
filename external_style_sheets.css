@@ -1,0 +1,27 @@
+* {
+    background-color:ghostwhite;
+}
+
+
+.centered_header{
+    background-color:white;
+    color:#1EA1FF;
+    font-family:
+    gap: 20px; /* Space between items */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.body{
+    background-color:ghostwhite;
+}
+
+.box {
+    background-color: white;
+    width: 200px;
+    height: 100px;
+    border: 2px solid blue;
+    padding: 10px;
+    margin-left: 45%;
+}
