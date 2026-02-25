@@ -6,9 +6,10 @@
 .centered_header{
     background-color:white;
     color:#1EA1FF;
-    font-family:
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     gap: 20px; /* Space between items */
     display: flex;
+    width:auto;
     justify-content: center;
     align-items: center;
 }
@@ -16,6 +17,44 @@
 .body{
     background-color:ghostwhite;
 }
+
+.tweet_table{
+
+    background-color: white;
+    width: 40%;
+    height: 400px;
+    padding: 10px;
+    margin-left: 30%;
+    margin-top: 30px;
+
+    /* lay out avatar and textarea side by side */
+    display: flex;
+    align-items: flex-start;   /* keep the image at the top of the box */
+    gap: 10px;                 /* small space between picture and text area */
+}
+
+.profile_pic{
+    background-color:white;
+    border-radius: 50%;
+    width:10%;
+    height:auto;             /* maintain aspect ratio */
+    flex-shrink: 0;          /* don't let the avatar shrink when the textarea grows */
+}
+
+.sample_text{
+    background-color: white;
+    width:80%;
+    height:200px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: larger;
+    border: 0px;
+
+    /* allow text to wrap and behave like a multiline textarea */
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
 
 .box {
     background-color: white;
