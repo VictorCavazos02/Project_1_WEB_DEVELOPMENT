@@ -14,14 +14,33 @@
 
     </div>
     
-    <div class="body">
+    <div class="box">
         <div class="tweet_table">
-                <img class="profile_pic" src="./images/gaben.png" width="100" height="100">
-                <!-- <p1 class="sample_text">What's happening?</p1> -->
-                <textarea class="sample_text" placeholder="What's happening?" rows="3"></textarea>
+                <div class="create_post">
+                    <img class="profile_pic" src="./images/gaben.png" width="100" height="100">
+                    <!-- <p1 class="sample_text">What's happening?</p1> -->
+                    <textarea class="sample_text" placeholder="What's happening?" rows="3"></textarea>
+                    <button class="tweet_button">Tweet</button>
+                </div>
         </div>
-        
+        <hr class="table_divider">
     </div>
     
+    <script>
+        const tweetButton = document.getElementsByClassName('tweet_button')[0];
+        const sampleText = document.getElementsByClassName('sample_text')[0];
+
+        tweetButton.addEventListener('click', function() {
+            const tweetedBox = document.createElement('div');
+            const newTweet = document.createElement('p');
+            const tweetBreak = document.body.appendChild(document.createElement('hr'));
+            newTweet.className = 'tweeted_post';
+            newTweet.textContent = sampleText.value;
+            tweetedBox.appendChild(newTweet);
+            document.body.appendChild(tweetedBox);
+            tweetBreak.className = 'table_divider';
+            document.body.appendChild(tweetBreak);
+        });
+    </script>
 </body>
 </html>
