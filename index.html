@@ -13,6 +13,7 @@
         <h1 class="centered_header">Tweeter</h1>
 
     </div>
+
     
     <div class="box">
         <div class="tweet_table">
@@ -23,23 +24,47 @@
                     <button class="tweet_button">Tweet</button>
                 </div>
         </div>
-        <hr class="table_divider">
+        
+    </div>
+    <div class="bigger_box">
     </div>
     
     <script>
         const tweetButton = document.getElementsByClassName('tweet_button')[0];
         const sampleText = document.getElementsByClassName('sample_text')[0];
+        const container   = document.querySelector('.bigger_box');
 
         tweetButton.addEventListener('click', function() {
             const tweetedBox = document.createElement('div');
             const newTweet = document.createElement('p');
-            const tweetBreak = document.body.appendChild(document.createElement('hr'));
+            const tweetBreak = document.createElement('hr');
+            const profile_pictured = document.createElement('img');
+            const pofile_data = document.createElement('h');
+
+            //Set the css and value for previous tweeted stuff
             newTweet.className = 'tweeted_post';
             newTweet.textContent = sampleText.value;
-            tweetedBox.appendChild(newTweet);
-            document.body.appendChild(tweetedBox);
+
+            //Give the now tweeted container the css of a normal tweet
+            tweetedBox.className = 'tweet_table';
+            //Give the break that divides the previous tweets the css that I want
             tweetBreak.className = 'table_divider';
-            document.body.appendChild(tweetBreak);
+            //Give the profile picture the css and source of a normal profile picture
+            profile_pictured.className = 'profile_pic';
+            profile_pictured.src = './images/gaben.png';
+            //Create the profile data to be displayed next to the right of the profile picture
+            profile_data.textContent = 'Gabe Newell @Gaben';
+            profile_data.className = 'profile_data'; 
+            
+
+            container.prepend(tweetBreak, tweetedBox);
+            tweetedBox.appendChild(profile_pictured);
+            tweetedBox.appendChild(profile_data);
+            tweetedBox.appendChild(newTweet);
+
+            tweetedBox.appendChild(newTweet);
+
+            
         });
     </script>
 </body>
