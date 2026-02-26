@@ -54,7 +54,7 @@
 .profile_pic{
     background-color:white;
     border-radius: 50%;
-    width:10%;
+    width:7%;
     height:auto;             /* maintain aspect ratio */
     flex-shrink: 0;          /* don't let the avatar shrink when the textarea grows */
 }
@@ -87,6 +87,27 @@
     right: 10px;
 }
 
+/* character counter shown to the left of the tweet button */
+.char_counter{
+    position: absolute;
+    bottom: 26px;
+    right: 120px; /* sits directly left of the 100px-wide button + 10px gap */
+    background-color: white;
+    color: grey;
+    font-size: 14px;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+.char_counter.limit_reached{
+    color: red;
+}
+
+/* disabled tweet button look */
+.tweet_button:disabled{
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 .table_divider{
     color:lightgray;
     background-color:white;
@@ -102,8 +123,35 @@
     z-index: 9999;
 }
 
+.tweeted_post_table{
+    background-color: white;
+    width: 60%;
+    height: 300px;
+    margin-left: 20%;
+    /*margin-bottom:-20px;
+    */position: relative;
+    
+}
+
 .tweeted_post{
     background-color: white;
+    width: 60%;
+    margin-left: 20%;
+    padding:0px;
+    margin-top:-20px;
+    padding-bottom:10px;
+    margin-bottom:-10px;
+    display: flex;
+    align-items: left;
+    margin-left: 7.7%;
+    height: 100px;
+}
+
+.profile_box{
+    background-color:white;
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
     width: 60%;
     margin-left: 20%;
     padding:none;
@@ -113,10 +161,38 @@
     margin-bottom:-10px;
 }
 
-.profile_data{
+.interactions_box{
+    background-color:white;
+    display:flex;
+    align-items:flex-start;
+    gap:15%;
+    padding-top:10px;
+    width:60%;
+    margin-left:20%;
+}
+
+.interaction_icon{
+    background-color:white;
+    width:20px;
+    height:20px;
+    margin-left:10%;
+    padding-bottom:10px;
+}
+
+.profile_display_name{
     background-color: white;
     display:flex;
     align-items:center;
+    padding-top:20px;
     font-family:'Times New Roman';
-    
+    font-weight:bolder;
+}
+
+.profile_username{
+    background-color: white;
+    display:flex;
+    align-items:center;
+    padding-top:20px;
+    font-family:'Times New Roman';
+    color:grey;
 }

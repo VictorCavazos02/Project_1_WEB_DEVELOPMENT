@@ -20,7 +20,8 @@
                 <div class="create_post">
                     <img class="profile_pic" src="./images/gaben.png" width="100" height="100">
                     <!-- <p1 class="sample_text">What's happening?</p1> -->
-                    <textarea class="sample_text" placeholder="What's happening?" rows="3"></textarea>
+                    <textarea class="sample_text" placeholder="What's happening?" rows="3" maxlength="160"></textarea>
+                    <span id="char_count" class="char_counter">0/160 char remaining</span>
                     <button class="tweet_button">Tweet</button>
                 </div>
         </div>
@@ -32,37 +33,104 @@
     <script>
         const tweetButton = document.getElementsByClassName('tweet_button')[0];
         const sampleText = document.getElementsByClassName('sample_text')[0];
+        const charCount = document.getElementById('char_count');
         const container   = document.querySelector('.bigger_box');
 
+        // update character counter and enforce 160-char limit
+        function updateCount() {
+            let len = sampleText.value.length;
+            if (len > 160) {
+                sampleText.value = sampleText.value.slice(0, 160);
+                len = 160;
+            }
+            charCount.textContent = `${len}/160 char remaining`;
+            if (len >= 160) {
+                charCount.classList.add('limit_reached');
+            } else {
+                charCount.classList.remove('limit_reached');
+            }
+            // disable tweet button when limit reached
+            tweetButton.disabled = (len >= 160);
+        }
+
+        sampleText.addEventListener('input', updateCount);
+        // initialize counter
+        updateCount();
+
         tweetButton.addEventListener('click', function() {
+            // safety: do nothing if button is disabled
+            if (tweetButton.disabled) return;
+            //Overall container for the tweeted post
             const tweetedBox = document.createElement('div');
+            //Container just for the profile data and picture
+            const profileBox = document.createElement('div');
+            //Container for like, comment, and retweet icons
+            const user_interact_box = document.createElement('div');
+
+            //Contents of the tweeted post
             const newTweet = document.createElement('p');
             const tweetBreak = document.createElement('hr');
             const profile_pictured = document.createElement('img');
-            const pofile_data = document.createElement('h');
+            const profile_display_name = document.createElement('h');
+            const profile_username = document.createElement('h');
+
+            //Create icon elements for interagction box
+            const comment_icon = document.createElement('img');
+            const retweet_icon = document.createElement('img');
+            const like_icon = document.createElement('img');
+            const share_icon = document.createElement('img');
+
+            //Set the source for each icon
+            comment_icon.src = './images/comment.png';
+            retweet_icon.src = './images/retweet.png';
+            like_icon.src = './images/like.png';
+            share_icon.src = './images/share.jpg';
+
+            //Give each icon the css of a normal interaction icon
+            comment_icon.className = 'interaction_icon';
+            retweet_icon.className = 'interaction_icon';
+            like_icon.className = 'interaction_icon';
+            share_icon.className = 'interaction_icon';
 
             //Set the css and value for previous tweeted stuff
             newTweet.className = 'tweeted_post';
             newTweet.textContent = sampleText.value;
 
             //Give the now tweeted container the css of a normal tweet
-            tweetedBox.className = 'tweet_table';
+            tweetedBox.className = 'tweeted_post_table';
+            //Give the now tweeted container profile box the css of a profile box
+            profileBox.className = 'profile_box';
+
             //Give the break that divides the previous tweets the css that I want
             tweetBreak.className = 'table_divider';
             //Give the profile picture the css and source of a normal profile picture
             profile_pictured.className = 'profile_pic';
             profile_pictured.src = './images/gaben.png';
             //Create the profile data to be displayed next to the right of the profile picture
-            profile_data.textContent = 'Gabe Newell @Gaben';
-            profile_data.className = 'profile_data'; 
+            profile_display_name.textContent = 'Gabe Newell';
+            profile_display_name.className = 'profile_display_name';
+
+            profile_username.textContent = '@gaben - 5hr';
+            profile_username.className = 'profile_username';
+
+            //Give the interaction box the css of a normal interaction box
+            user_interact_box.className = 'interactions_box';
             
 
-            container.prepend(tweetBreak, tweetedBox);
-            tweetedBox.appendChild(profile_pictured);
-            tweetedBox.appendChild(profile_data);
+            container.prepend(tweetBreak, profileBox,  tweetedBox, user_interact_box);
+            //Append the profile picture and data into the profile box
+            profileBox.appendChild(profile_pictured);
+            profileBox.appendChild(profile_display_name);
+            profileBox.appendChild(profile_username);
+            //Append the tweeted post into the tweeted box
             tweetedBox.appendChild(newTweet);
+            //Append the interaction icons into the interaction box
+            user_interact_box.appendChild(comment_icon);
+            user_interact_box.appendChild(retweet_icon);
+            user_interact_box.appendChild(like_icon);
+            user_interact_box.appendChild(share_icon);
+            
 
-            tweetedBox.appendChild(newTweet);
 
             
         });
